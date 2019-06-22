@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>javasSript慣性飄移效果DEMO [DriftLikeAPro]</title>
+
+  <script src="./lib/DriftLikeAPro.js" rel="preload"></script>
+  <script src="./main.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+  <div id="demoElement">
+    <pre>
+    說明:
+    本範例於 window.onload 事件，將自動遍歷DOM中
+    包含"drift"的class元素並套用效果。
+    也可以手動套用。
+    <button id="btnDemo1">點我手動綁定效果</button>
+    <button id="btnDemo2" style="display:none;">點我關閉效果</button>
+    example:
+    new DriftLikeAPro(DOM Element); // return 此實例
+    </pre>
+  </div>
+  <div class="title drift">javaScript 慣性飄移效果</div>
+  <div class="ball drift"></div>
+  <div class="ball drift"></div>
+  <div class="ball drift"></div>
+
+  <img class="drift" src="./imgs/demo1.gif"></img>
+  <img class="drift" src="./imgs/demo2.gif"></img>
+  <img class="drift" src="./imgs/demo3.gif"></img>
+  <img class="drift" src="./imgs/demo4.png"></img>.
+
+  
+  <button id="classController">暫停更新</button>
+
+</body>
+
+</html>

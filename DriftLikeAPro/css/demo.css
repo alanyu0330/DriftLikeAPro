@@ -16,9 +16,12 @@ html, body {
 }
 
 body {
-    font-family: Microsoft JhengHei, "Microsoft YaHei", sans-serif;
-    background: linear-gradient(to left, #757f9a, #d7dde8);
     overflow: hidden;
+    font-family: Microsoft JhengHei, "Microsoft YaHei", sans-serif;
+    background: linear-gradient(to left, #2a334a, #abb3c3);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .title {
@@ -46,10 +49,23 @@ body {
     background-color: #ff633c;
 }
 
-#demoElement {
+#readMe {
     font-size: 18px;
     border: 5px dashed #000;
     border-radius: 12px;
+    display: inline-block;
+}
+
+#dvd {
+    overflow: hidden;
+}
+
+#dvd img {
+    position: relative;
+    left: -300px;
+    width: 300px;
+    max-width: unset;
+    filter: drop-shadow(300px 0px 0px #0def00);
 }
 
 #classController{

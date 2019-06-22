@@ -1,7 +1,7 @@
 // 預設設定值
 const DEFAULT_CFG = {
-  friction: 0.992, // 設定摩擦力
-  maxSpeed: 180, // 最大速限
+  friction: 0.993, // 設定摩擦力
+  maxSpeed: 150, // 最大速限
   showInfo: true, // 是否顯示座標
 }
 
@@ -57,13 +57,15 @@ class DriftLikeAPro {
       this.target.appendChild(this.infoTip);
     }
 
-    this.target.addEventListener('mousedown', this._onDraggingStart.bind(this));
+    this.target.onmousedown = this.target.ontouchstart = this._onDraggingStart.bind(this);
     this.target._DLP = this;
 
     DriftLikeAPro._all.push(this);
   }
 
   _onDraggingStart(e) {
+    if (e.touches) e.clientX = e.touches[0].clientX;
+    if (e.touches) e.clientY = e.touches[0].clientY;
     if (this._disableDLP) return;
     this._isDragging = true;
     this.target.style.cursor = 'grabbing';
@@ -77,13 +79,15 @@ class DriftLikeAPro {
     this.disX = e.clientX - this.target.offsetLeft;
     this.disY = e.clientY - this.target.offsetTop;
 
-    document.onmousemove = this._onMove.bind(this);
-    document.onmouseup = this._onStop.bind(this);
+    document.onmousemove = document.ontouchmove = this._onMove.bind(this);
+    document.onmouseup = document.ontouchend = this._onStop.bind(this);
 
     return false;
   }
 
   _onMove(e) {
+    if (e.touches) e.clientX = e.touches[0].clientX;
+    if (e.touches) e.clientY = e.touches[0].clientY;
     // 更新元素位置
     this.target.style.left = e.clientX - this.disX + 'px';
     this.target.style.top = e.clientY - this.disY + 'px';
@@ -170,12 +174,14 @@ class DriftLikeAPro {
     this._callback(data);
   }
 
+  // 事件接收器
   addEventListener(func) {
     if (typeof func !== 'function') {
       return console.error('error: param "func" is not a function');
     } else {
       this._callback = func;
     }
+    return this;
   }
 
   // 關閉效果

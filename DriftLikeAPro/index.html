@@ -8,12 +8,12 @@
   <title>javasSript慣性飄移效果DEMO [DriftLikeAPro]</title>
 
   <script src="./lib/DriftLikeAPro.js" rel="preload"></script>
-  <script src="./main.js"></script>
-  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="./js/demo.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/demo.css">
 </head>
 
 <body>
-  <div id="demoElement">
+  <div id="readMe">
     <pre>
     說明:
     本範例於 window.onload 事件，將自動遍歷DOM中
@@ -23,6 +23,7 @@
     <button id="btnDemo2" style="display:none;">點我關閉效果</button>
     example:
     new DriftLikeAPro(DOM Element); // return 此實例
+    <a href="https://github.com/alanyu0330">My gitHub :)</a>
     </pre>
   </div>
   <div class="title drift">javaScript 慣性飄移效果</div>
@@ -33,10 +34,13 @@
   <img class="drift" src="./imgs/demo1.gif"></img>
   <img class="drift" src="./imgs/demo2.gif"></img>
   <img class="drift" src="./imgs/demo3.gif"></img>
-  <img class="drift" src="./imgs/demo4.png"></img>.
+  <img id="basketball" src="./imgs/demo4.png"></img>.
 
-  
-  <button id="classController">暫停更新</button>
+  <div id="dvd">
+    <img src="./imgs/dvd.png" alt="DVD-Logo">
+  </div>
+
+  <button id="classController">PAUSE</button>
 
 </body>
 

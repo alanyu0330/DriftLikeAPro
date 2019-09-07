@@ -1,36 +1,34 @@
-// 預設設定值
-const DEFAULT_CFG = {
-  friction: 0.993, // 設定摩擦力
-  maxSpeed: 150, // 最大速限
-  showInfo: true, // 是否顯示座標
-}
+// "user strict";
 
 class DriftLikeAPro {
-
-  // "user strict";
 
   /**  
    * @param {Object} target 欲產生滑動效果之 DOM 元素
    */
-  constructor(target, config = DEFAULT_CFG) {
-    this.config = config;
+  constructor(target, {
+    // 預設設定值
+    friction = 0.993, // 設定摩擦力
+    maxSpeed = 150, // 最大速限
+    showInfo = true, // 是否顯示座標
+  } = {}) {
     this.target = target;
     this.infoTip = null; // 顯示座標資訊物件
     this.vectorX = 0; // X向量
     this.vectorY = 0; // Y向量
-    this.lastX = this.target.offsetLeft; // 上一幀座標
-    this.lastY = this.target.offsetTop; // 上一幀座標
+    this.lastX = this.target.offsetLeft; // 上一幀座標x
+    this.lastY = this.target.offsetTop; // 上一幀座標y
     this.disX = 0; // 相對世界座標之偏移量X
     this.disY = 0; // 相對世界座標之偏移量Y
     this._isDragging = false; // 旗標
     this._disableDLP = false;
-    this._FRICTION = this.config.friction; // 摩擦力 (0 ~ 1浮點數，越大向量衰減程度越小)
-    this._MAX_SPEED = this.config.maxSpeed; // 最大速度
+    this._FRICTION = friction; // 摩擦力 (0 ~ 1浮點數，越大向量衰減程度越小)
+    this._MAX_SPEED = maxSpeed; // 最大速度
+    this._showInfo = showInfo; // 是否顯示座標
     this._customEffects = []; // 存放更新時要執行的自訂效果
     this._callback = () => { }; // callback
     this._init();
 
-    return this; // 回傳此物件
+    return this; // 回傳實例
   }
 
   // 初始化物件
@@ -44,7 +42,6 @@ class DriftLikeAPro {
       this.target.style.position = 'absolute';
     }, 100)
 
-
     this.infoTip = document.createElement('div');
     this.infoTip.style.position = 'absolute';
     this.infoTip.style.bottom = -15;
@@ -53,9 +50,7 @@ class DriftLikeAPro {
     this.infoTip.style.fontSize = '15px';
     this.infoTip.style.textAlign = 'center';
     this.infoTip.innerHTML = 'Drift Me!';
-    if (this.config.showInfo) {
-      this.target.appendChild(this.infoTip);
-    }
+    if (this._showInfo) this.target.appendChild(this.infoTip);
 
     this.target.onmousedown = this.target.ontouchstart = this._onDraggingStart.bind(this);
     this.target._DLP = this;
@@ -233,7 +228,7 @@ class DriftLikeAPro {
   }
 }
 
-/******* 某些js環境不支援 "靜態變數" 的寫法 *******/
+/******* 環境不支援 "靜態變數" 的寫法 *******/
 // DriftLikeAPro._all = [];
 // DriftLikeAPro._isRAFUpdating = true;
 // DriftLikeAPro._maxFPS = 60;
@@ -260,5 +255,5 @@ class DriftLikeAPro {
 // DriftLikeAPro.continue = function () {
 //   this._isRAFUpdating = true;
 // }
-/******* 某些js環境不支援 "靜態變數" 的寫法 *******/
+/******* 環境不支援 "靜態變數" 的寫法 *******/
 
